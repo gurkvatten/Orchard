@@ -8,26 +8,35 @@
 import SwiftUI
 
 struct ArticleView: View {
-    let article: Article
+    let card: Card
     
     var body: some View {
-        VStack {
-            Text(article.title)
-                .font(.title)
-                .fontWeight(.bold)
-                .padding()
-            
-            Text(article.content)
-                .padding()
-            
-            Spacer()
+        ScrollView{
+            VStack {
+                Text(card.heading)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding()
+                AsyncImage(url: URL(string: card.imageName)) { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(10)
+                } placeholder: {
+                    ProgressView()
+                }
+                
+                Text(card.article)
+                    .padding()
+                
+                Spacer()
+            }
         }
     }
-}
-
-struct ArticleView_Previews: PreviewProvider {
-    static var previews: some View {
-        let sampleArticle = Article(title: "Sample Article", content: "This is a sample article content.")
-        return ArticleView(article: sampleArticle)
+    
+    struct ArticleView_Previews: PreviewProvider {
+        static var previews: some View {
+            let sampleCard = Card(category: "Sample Category", heading: "Sample Heading", year: "2024", imageName: "sampleImage", article: "This is a sample article content.")
+            return ArticleView(card: sampleCard)
+        }
     }
 }

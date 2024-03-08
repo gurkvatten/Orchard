@@ -12,6 +12,7 @@
 		4EB7580C2B9AE9D500F03CEB /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB7580B2B9AE9D500F03CEB /* FirebaseFirestoreCombine-Community */; };
 		4EB7580E2B9AE9D500F03CEB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB7580D2B9AE9D500F03CEB /* FirebaseFirestoreSwift */; };
 		4EB758102B9AE9D500F03CEB /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB7580F2B9AE9D500F03CEB /* FirebaseFunctions */; };
+		4EB758132B9B0A3300F03CEB /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB758122B9B0A3300F03CEB /* SDWebImageSwiftUI */; };
 		4EC452852B84D68200174216 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC452842B84D68200174216 /* CardListView.swift */; };
 		4ED3F0DB2B73B42F003FC853 /* OrchardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED3F0DA2B73B42F003FC853 /* OrchardApp.swift */; };
 		4ED3F0DD2B73B42F003FC853 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED3F0DC2B73B42F003FC853 /* ContentView.swift */; };
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EB758132B9B0A3300F03CEB /* SDWebImageSwiftUI in Frameworks */,
 				4ED3F0F02B73B6E8003FC853 /* FirebaseAnalyticsSwift in Frameworks */,
 				4ED3F0EC2B73B6E8003FC853 /* FirebaseAnalytics in Frameworks */,
 				4ED3F0EE2B73B6E8003FC853 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -120,6 +122,7 @@
 				4EB7580B2B9AE9D500F03CEB /* FirebaseFirestoreCombine-Community */,
 				4EB7580D2B9AE9D500F03CEB /* FirebaseFirestoreSwift */,
 				4EB7580F2B9AE9D500F03CEB /* FirebaseFunctions */,
+				4EB758122B9B0A3300F03CEB /* SDWebImageSwiftUI */,
 			);
 			productName = Orchard;
 			productReference = 4ED3F0D72B73B42F003FC853 /* Orchard.app */;
@@ -151,6 +154,7 @@
 			mainGroup = 4ED3F0CE2B73B42F003FC853;
 			packageReferences = (
 				4ED3F0EA2B73B6E8003FC853 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				4EB758112B9B0A3300F03CEB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 4ED3F0D82B73B42F003FC853 /* Products */;
 			projectDirPath = "";
@@ -390,6 +394,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4EB758112B9B0A3300F03CEB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.6;
+			};
+		};
 		4ED3F0EA2B73B6E8003FC853 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -420,6 +432,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4ED3F0EA2B73B6E8003FC853 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
+		};
+		4EB758122B9B0A3300F03CEB /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EB758112B9B0A3300F03CEB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 		4ED3F0EB2B73B6E8003FC853 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

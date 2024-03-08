@@ -19,6 +19,7 @@ struct Card: Identifiable {
     let year: String
     let imageName: String
     let article: String
+    let audioUrl: String
 }
 
 
@@ -64,13 +65,19 @@ struct CardListView: View {
                             .listRowSpacing(10)
                         }
                     }
-                    .navigationBarTitle("Orchard")
+                    .navigationTitle("Orchard")
+                    .toolbarBackground(Color.gray.opacity(0.1), for: .navigationBar)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.gray.opacity(0.1))
+                    
                 }
             }
+            
             .onAppear {
                 self.fetchCards()
             }
+            
+            
         }
     
     func textHeight(for text: String) -> CGFloat {
@@ -94,7 +101,8 @@ struct CardListView: View {
                     let year = data["year"] as? String ?? ""
                     let article = data["article"] as? String ?? ""
                     let imageName = data["imageName"] as? String ?? ""
-                    return Card(category: category, heading: heading, year: year, imageName: imageName, article: article)
+                    let audioUrl = data["audioUrl"] as? String ?? ""
+                    return Card(category: category, heading: heading, year: year, imageName: imageName, article: article, audioUrl: audioUrl)
                 }
             }
         }

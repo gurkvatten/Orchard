@@ -27,6 +27,10 @@ struct ArticleView: View {
                     ProgressView()
                 }
                 
+                Text(card.year)
+                    .font(.title3)
+                    .padding()
+                
                 Text(card.article)
                     .padding()
                 

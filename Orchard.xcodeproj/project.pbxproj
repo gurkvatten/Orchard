@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E7700892BB2F24F003AB31A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7700882BB2F24F003AB31A /* FirebaseStorage */; };
+		4E77008D2BB30120003AB31A /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E77008C2BB30120003AB31A /* info.plist */; };
 		4EB758082B99E59600F03CEB /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB758072B99E59600F03CEB /* ArticleView.swift */; };
 		4EB7580A2B9AE9D500F03CEB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB758092B9AE9D500F03CEB /* FirebaseFirestore */; };
 		4EB7580C2B9AE9D500F03CEB /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB7580B2B9AE9D500F03CEB /* FirebaseFirestoreCombine-Community */; };
@@ -27,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E77008C2BB30120003AB31A /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		4EB758072B99E59600F03CEB /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		4EC452842B84D68200174216 /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		4ED3F0D72B73B42F003FC853 /* Orchard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orchard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +53,7 @@
 				4ED3F0F42B73B6E8003FC853 /* FirebaseAppCheck in Frameworks */,
 				4ED3F0F22B73B6E8003FC853 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				4EB7580A2B9AE9D500F03CEB /* FirebaseFirestore in Frameworks */,
+				4E7700892BB2F24F003AB31A /* FirebaseStorage in Frameworks */,
 				4EB7580C2B9AE9D500F03CEB /* FirebaseFirestoreCombine-Community in Frameworks */,
 				4EB7580E2B9AE9D500F03CEB /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -58,11 +62,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E7700872BB2F24F003AB31A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4ED3F0CE2B73B42F003FC853 = {
 			isa = PBXGroup;
 			children = (
 				4ED3F0D92B73B42F003FC853 /* Orchard */,
 				4ED3F0D82B73B42F003FC853 /* Products */,
+				4E7700872BB2F24F003AB31A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +96,7 @@
 				4EB758072B99E59600F03CEB /* ArticleView.swift */,
 				4ED3F0DE2B73B431003FC853 /* Assets.xcassets */,
 				4ED3F0E02B73B431003FC853 /* Preview Content */,
+				4E77008C2BB30120003AB31A /* info.plist */,
 			);
 			path = Orchard;
 			sourceTree = "<group>";
@@ -123,6 +136,7 @@
 				4EB7580D2B9AE9D500F03CEB /* FirebaseFirestoreSwift */,
 				4EB7580F2B9AE9D500F03CEB /* FirebaseFunctions */,
 				4EB758122B9B0A3300F03CEB /* SDWebImageSwiftUI */,
+				4E7700882BB2F24F003AB31A /* FirebaseStorage */,
 			);
 			productName = Orchard;
 			productReference = 4ED3F0D72B73B42F003FC853 /* Orchard.app */;
@@ -170,6 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E77008D2BB30120003AB31A /* info.plist in Resources */,
 				4ED3F0E22B73B431003FC853 /* Preview Assets.xcassets in Resources */,
 				4ED3F0DF2B73B431003FC853 /* Assets.xcassets in Resources */,
 				4ED3F0E92B73B688003FC853 /* GoogleService-Info.plist in Resources */,
@@ -326,6 +341,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -355,6 +371,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -413,6 +430,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4E7700882BB2F24F003AB31A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4ED3F0EA2B73B6E8003FC853 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		4EB758092B9AE9D500F03CEB /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4ED3F0EA2B73B6E8003FC853 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -27,6 +27,7 @@ struct Card: Identifiable {
 struct CardListView: View {
     @State var cards: [Card] = []
     @State private var selectedCategory: String = "Hardware"
+    @State private var secondaryColor: Color = .blue
     
     var categories: [String] {
             var categoriesSet = Set<String>()
@@ -50,9 +51,9 @@ struct CardListView: View {
                         Picker("Choose a category", selection: $selectedCategory) {
                             ForEach(categories, id: \.self) { category in
                                 Text(category).tag(category)
-                            }
+                                                                }
                         }
-                                            .pickerStyle(MenuPickerStyle())
+                                            .foregroundColor(secondaryColor)
                                             .padding()
                         ForEach(filteredCards) { card in
                             NavigationLink(destination: ArticleView(card: card)) {
@@ -68,7 +69,7 @@ struct CardListView: View {
                                         VStack(alignment: .leading) {
                                             Text(card.category)
                                                 .font(.caption)
-                                                .foregroundColor(.secondary)
+                                                .foregroundColor(secondaryColor)
                                             Text(card.heading)
                                                 .font(.title)
                                                 .fontWeight(.black)
@@ -76,7 +77,7 @@ struct CardListView: View {
                                                 .lineLimit(3)
                                             Text(card.year)
                                                 .font(.caption)
-                                                .foregroundColor(.secondary)
+                                                .foregroundColor(secondaryColor)
                                         }
                                         .layoutPriority(100)
                                     }
@@ -88,6 +89,12 @@ struct CardListView: View {
                             .listRowBackground(Color.clear)
                             .listRowSpacing(10)
                         }
+                        Button("Change Accent Color") {
+                                               secondaryColor = Color(red: .random(in: 0...1),
+                                                                    green: .random(in: 0...1),
+                                                                    blue: .random(in: 0...1))
+                                            }
+                                            .padding()
                     }
                     .navigationTitle("Orchard")
                     .toolbarBackground(Color.gray.opacity(0.1), for: .navigationBar)

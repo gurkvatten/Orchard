@@ -20,17 +20,41 @@ struct Card: Identifiable {
     let imageName: String
     let article: String
     let audioUrl: String
+    let modelUrl: String
 }
 
 
 struct CardListView: View {
     @State var cards: [Card] = []
+    @State private var selectedCategory: String = "Hardware"
+    
+    var categories: [String] {
+            var categoriesSet = Set<String>()
+            for card in cards {
+                categoriesSet.insert(card.category)
+            }
+            return Array(categoriesSet)
+        }
+    var filteredCards: [Card] {
+            if selectedCategory.isEmpty {
+                return cards
+            } else {
+                return cards.filter { $0.category == selectedCategory }
+            }
+        }
     
     var body: some View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        ForEach(cards) { card in
+                        Picker("Choose a category", selection: $selectedCategory) {
+                            ForEach(categories, id: \.self) { category in
+                                Text(category).tag(category)
+                            }
+                        }
+                                            .pickerStyle(MenuPickerStyle())
+                                            .padding()
+                        ForEach(filteredCards) { card in
                             NavigationLink(destination: ArticleView(card: card)) {
                                 VStack {
                                     AsyncImage(url: URL(string: card.imageName)) { image in
@@ -76,6 +100,11 @@ struct CardListView: View {
             .onAppear {
                 self.fetchCards()
             }
+            .onAppear() {
+                if let firstCategory = categories.first {
+                    selectedCategory = firstCategory
+                }
+            }
             
             
         }
@@ -102,7 +131,9 @@ struct CardListView: View {
                     let article = data["article"] as? String ?? ""
                     let imageName = data["imageName"] as? String ?? ""
                     let audioUrl = data["audioUrl"] as? String ?? ""
-                    return Card(category: category, heading: heading, year: year, imageName: imageName, article: article, audioUrl: audioUrl)
+                    let modelUrl = data["modelUrl"] as? String ?? ""
+                    
+                    return Card(category: category, heading: heading, year: year, imageName: imageName, article: article, audioUrl: audioUrl, modelUrl:modelUrl )
                 }
             }
         }

@@ -9,6 +9,7 @@ import SwiftUI
 import SceneKit
 import AVKit
 import AVFoundation
+import SceneKit.ModelIO
 
 
 struct ArticleView: View {
@@ -58,6 +59,7 @@ struct ArticleView: View {
                     if let scene = scene {
                         SceneKitContentView(scene: scene)
                                         .frame(width: 300, height: 300)
+                                        
                     } else {
                         ProgressView("Laddar modell...")
                             .padding()
@@ -72,35 +74,43 @@ struct ArticleView: View {
     }
     
     func fetchModel() {
-            guard let modelUrl = URL(string: card.modelUrl) else {
-                print("Fel: Ogiltig modell-URL")
+        guard let modelUrl = URL(string: card.modelUrl) else {
+            print("Fel: Ogiltig modell-URL")
+            return
+        }
+        
+        print("Hämtar modell från URL: \(modelUrl)")
+        
+        URLSession.shared.dataTask(with: modelUrl) { data, response, error in
+            if let error = error {
+                print("Fel vid hämtning av modell: \(error.localizedDescription)")
                 return
             }
             
-            print("Hämtar modell från URL: \(modelUrl)")
+            guard let data = data else {
+                print("Ingen data returnerades från servern.")
+                return
+            }
             
-            URLSession.shared.dataTask(with: modelUrl) { data, response, error in
-                if let error = error {
-                    print("Fel vid hämtning av modell: \(error.localizedDescription)")
-                    return
-                }
+            do {
                 
-                if let data = data {
-                    do {
-                        let scene = try SCNScene(url: modelUrl, options: nil)
-                        DispatchQueue.main.async {
-                            self.scene = scene
-                            self.isModelDisplayed = true
-                        }
-                    } catch {
-                        print("Error loading model from URL: \(modelUrl)")
-                        print("Error: \(error)")
-                    }
-                } else {
-                    print("Ingen data returnerades från servern.")
+                let tempDirectoryURL = FileManager.default.temporaryDirectory
+                let tempFileURL = tempDirectoryURL.appendingPathComponent("model.usdz")
+                try data.write(to: tempFileURL)
+                
+                
+                let scene = try SCNScene(url: tempFileURL, options: nil)
+                DispatchQueue.main.async {
+                    self.scene = scene
+                    self.isModelDisplayed = true
+                    
+                   
                 }
-            }.resume()
-        }
+            } catch {
+                print("Error loading model from data: \(error)")
+            }
+        }.resume()
+    }
     
     func playAudio() {
         guard let url = URL(string: card.audioUrl) else {
@@ -128,7 +138,24 @@ struct ArticleView: View {
         func makeUIView(context: Context) -> SCNView {
             let sceneView = SCNView()
             if let scene = scene {
+                print("Skapar SCNScene")
                 sceneView.scene = scene
+                sceneView.allowsCameraControl = true
+                sceneView.autoenablesDefaultLighting = true
+                
+                let cameraNode = SCNNode()
+                cameraNode.camera = SCNCamera()
+                cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
+                scene.rootNode.addChildNode(cameraNode)
+                
+                let lightNode = SCNNode()
+                            lightNode.light = SCNLight()
+                            lightNode.light?.type = .omni
+                            lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+                            scene.rootNode.addChildNode(lightNode)
+                
+                            lightNode.light?.intensity = 1000
+                            lightNode.light?.color = UIColor.white
                     
             }
             sceneView.backgroundColor = backgroundColor
@@ -146,7 +173,7 @@ struct ArticleView: View {
     
     struct ArticleView_Previews: PreviewProvider {
         static var previews: some View {
-            let sampleCard = Card(category: "Sample Category", heading: "Sample Heading", year: "2024", imageName: "sampleImage", article: "This is a sample article content.", audioUrl: "https://firebasestorage.googleapis.com/v0/b/orchard-83942.appspot.com/o/boing_lmke36X.mp3?alt=media&token=f5202487-d35f-4dce-b02f-65b800e52dfc", modelUrl: "https://firebasestorage.googleapis.com/v0/b/orchard-83942.appspot.com/o/macintosh%20sculpt%20001.obj?alt=media&token=aba69a8f-5169-4422-a656-e57188918051")
+            let sampleCard = Card(category: "Sample Category", heading: "Sample Heading", year: "2024", imageName: "sampleImage", article: "This is a sample article content.", audioUrl: "https://firebasestorage.googleapis.com/v0/b/orchard-83942.appspot.com/o/boing_lmke36X.mp3?alt=media&token=f5202487-d35f-4dce-b02f-65b800e52dfc", modelUrl: "https://firebasestorage.googleapis.com/v0/b/orchard-83942.appspot.com/o/g.obj?alt=media&token=f432840e-1cef-4d2c-9820-3f9bd7fbd7c0")
             return ArticleView(card: sampleCard)
         }
     }

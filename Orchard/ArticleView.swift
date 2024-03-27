@@ -58,7 +58,7 @@ struct ArticleView: View {
                 } else {
                     if let scene = scene {
                         SceneKitContentView(scene: scene)
-                                        .frame(width: 300, height: 300)
+                                        .frame(width: 300, height: 500)
                                         
                     } else {
                         ProgressView("Laddar modell...")

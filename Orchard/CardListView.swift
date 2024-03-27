@@ -12,18 +12,6 @@ import SDWebImageSwiftUI
 
 
 
-struct Card: Identifiable {
-    let id = UUID()
-    let category: String
-    let heading: String
-    let year: String
-    let imageName: String
-    let article: String
-    let audioUrl: String
-    let modelUrl: String
-}
-
-
 struct CardListView: View {
     @State var cards: [Card] = []
     @State private var selectedCategory: String = "Hardware"

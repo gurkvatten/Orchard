@@ -14,7 +14,7 @@ import SDWebImageSwiftUI
 
 struct CardListView: View {
     @State var cards: [Card] = []
-    @State private var selectedCategory: String = "Hardware"
+    @State private var selectedCategory: String = "Hårdvara"
     @State private var secondaryColor: Color = .blue
     
     var categories: [String] {
